@@ -16,5 +16,8 @@ lib64/
 .idea/*
 .idea
 
+# .pyc files
+.pyc
+
 # Database
 db.sqlite3

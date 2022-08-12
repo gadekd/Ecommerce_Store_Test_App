@@ -1,1 +1,12 @@
-<h3>Cart page</h3>
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h3>Cart page</h3>
+
+{% endblock content %}
