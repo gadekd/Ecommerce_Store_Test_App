@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,7 +57,10 @@ ROOT_URLCONF = 'app_ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # BASE_DIR + 'store' / 'templates',
+            os.path.join(BASE_DIR, 'store/templates')
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +72,12 @@ TEMPLATES = [
         },
     },
 ]
+
+# SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
+
+# TEMPLATE_DIRS = (
+#     os.path.join(SETTINGS_PATH, 'templates'),
+# )
 
 WSGI_APPLICATION = 'app_ecommerce.wsgi.application'
 

@@ -10,6 +10,7 @@ lib64/
 
 # Environment
 .env
+.venv
 
 # Idea files
 .idea/*
