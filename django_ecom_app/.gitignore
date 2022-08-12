@@ -1,0 +1,19 @@
+# Python caches
+__pycache__/
+
+# Environment folder
+env/
+
+# Libraries
+lib/
+lib64/
+
+# Environment
+.env
+
+# Idea files
+.idea/*
+.idea
+
+# Database
+db.sqlite3
