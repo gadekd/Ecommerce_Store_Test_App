@@ -29,14 +29,18 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'store' %}">Shop</a>
-                      </li>  
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Item creator</a>
+                    </li>
                 </ul>
                 
                 <div class="form-inline my-2 my-lg-0 ml-auto">
                     <a href="#" class="btn btn-info">Login</a>
 
                     <a href="{% url 'cart' %}">
-                        <img id="cart-icon" src="{% static 'img/sample_cart.png' %}"></a>
+                        <img id="cart-icon" src="{% static 'img/sample_cart.png' %}" alt="cart-icon"></a>
                     <p id="cart-total">0</p>
                 </div>
             </div>
@@ -53,43 +57,54 @@
         </div>
 
         <footer class="footer">
-            <h6 class="made-with-love">Made with &#x1F494 by A Simple Syndicate | <a href="#">Visit our page</a></h6>
+            <h6 class="made-with-love">Made with &#x1F494 by A Simple Syndicate | <a class="mwl-link" href="#">Visit our page</a></h6>
 
-            <div class="row footer-paragraphs">
-                <div class="col-2 col-sm-2 m-2 px-1">
-                    <h6 class="footer-paragraph-title">About us</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            
+
+            <div class="container-fluid align-items-bottom">
+                <div class="row align-items-center footer-paragraphs">
+                    <div class="col">
+                        <h6 class="display-6">About us</h6>
+                        <p>Those who believe in A Simple Syndicate are those, who achieve great things in life. There is no limit to the level
+                            you can go for in your life. This is the main goal in our media activity – remind people of the capabilities that
+                            they have. Everything is possible and nothing is unobtainable. This mindset has lead us where we are now and we are
+                            using that knowledge and experience to help other achieve what is believed to be out of the box.
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <h6 class="display-6">Our mission</h6>
+                        <p>The main goal of our organisation is to help others. This is all that matters. We are going to help each and every person
+                            at all cost, no matter what. The only thing that can secure you from receiving help from A Simple Syndicate is you. You 
+                            have the key. You <strong>are</strong> the key. You are all that matters. You will be the only one that can help. You need 
+                            help to achieve this goal. The fate is in your hands. You know that. You have always known that.
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <h6 class="display-6">Our journey</h6>
+                        <p>All that is left and all that we can affect is our attitude to the journey we are all part of. Every other thing and matter 
+                            is already gone as you read this sentence. This is the fate we chose and now it is too late to change the direction. Destination 
+                            has already been determined. This is why all you have read to this point is simultaneously true and false. You are capable of 
+                            achieving great things in life, but no matter what you do, it will be deprived of any meaning. All is lost. This is our journey.
+                        </p>
+                    </div>
+
+                    {% comment %} <div class="col-2 simple-syndicate">
+                        <img id="footer-logo" src="{% static 'img/footer/a_simple_syndicate.png' %}" alt="footer-logo">
+                    </div> {% endcomment %}
                 </div>
 
-                <div class="col-2 col-sm-2 m-2 px-1">
-                    <h6 class="footer-paragraph-title">Our mission</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <hr>
+
+                <div class="terms-of-service">
+                    <a class="tos-link" href="#">Shop regulations</a>
+                    <a class="tos-link" href="#">Sellers' regulations</a>
+                    <a class="tos-link" href="#">Newsletter regulations</a>
+                    <a class="tos-link" href="#">Privacy policy</a>
+                    <a class="tos-link" href="#">Cookie settings</a>
+                    <a class="tos-link" href="#">Join us</a>
                 </div>
-
-                <div class="col-2 col-sm-2 m-2 px-1">
-                    <h6 class="footer-paragraph-title">Our journey</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="terms-of-service">
-                <a class="tos-link" href="#">Shop regulations</a>
-                <a class="tos-link" href="#">Sellers' regulations</a>
-                <a class="tos-link" href="#">Newsletter regulations</a>
-                <a class="tos-link" href="#">Privacy policy</a>
-                <a class="tos-link" href="#">Cookie settings</a>
-                <a class="tos-link" href="#">Join us</a>
             </div>
 
             <p class="footer-authors">© A Simple Syndicate, 2022 | All Rights Reserved</p>
