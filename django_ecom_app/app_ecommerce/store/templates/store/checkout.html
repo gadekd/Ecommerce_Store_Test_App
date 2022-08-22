@@ -9,4 +9,80 @@
 
     <h3>Checkout page<h3>
 
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="box-element" id="form-wrapper">
+
+                    <form id="form">
+                        <div id="user-info">
+                            <div class="form-field">
+                                <input required class="form-control" type="text" name="name" placeholder="Name">
+                            </div>
+                            <div class="form-field">
+                                <input required class="form-control" type="email" name="email" placeholder="E-mail address">
+                            </div>
+                        </div>
+
+                        <div id="shipping-info">
+                            <hr>
+                            <p>Shipping information</p>
+                            <hr>
+
+                            <div class="form-field">
+                                <input class="form-control" type="text" name="street" placeholder="Street">
+                            </div>
+
+                            <div class="form-field">
+                                <input class="form-control" type="text" name="city" placeholder="City">
+                            </div>
+
+                            <div class="form-field">
+                                <input class="form-control" type="text" name="voivodeship" placeholder="Voivodeship">
+                            </div>
+
+                            <div class="form-field">
+                                <input class="form-control" type="text" name="zipcode" placeholder="Zip code">
+                            </div>
+
+                            <div class="form-field">
+                                <input class="form-control" type="text" name="country" placeholder="Country">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+                    </form>
+
+                </div>
+
+                <div class="box-element hidden" id="payment-info">
+                    <small>Paypal Options</small>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <div class="box-element">
+                    <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+                    <hr>
+
+                    <h3>Order summary</h3>
+                    <hr>
+
+                    <div class="cart-row">
+                        <div class="cart-row-image"><img class="row-image" src="{% static 'img/placeholder_item.png' %}"></div>
+                        <div class="cart-row-product"><p>Product 1</p></div>
+                        <div class="cart-row-price"><p>$20.00</p></div>
+                        <div class="cart-row-howmany"><p>(2)</p></div>
+                    </div>
+                    <h5>Items:   2</h5>
+                    <h5>Total:   $40</h5>
+                </div>
+                </div>
+            </div>
+
+        </div>
+
 {% endblock content %}

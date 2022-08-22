@@ -1,5 +1,8 @@
 body{
 	background-color: hsl(0, 0%, 98%);
+    display: flex;
+    flex-direction: column;
+    min-height: 10vh;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -29,6 +32,12 @@ h1,h2,h3,h4,h5,h6{
 	border-radius: 0 0 4px 4px;
 }
 
+.form-field{
+	width:250px;
+	display: inline-block;
+	padding: 5px;
+}
+
 .form-inline {
     margin-left: auto;
     margin-right: 1%;
@@ -41,6 +50,10 @@ h1,h2,h3,h4,h5,h6{
 .item-price {
     display: inline-block;
     float: right;
+}
+
+.hidden{
+	display: none!important;
 }
 
 #cart-icon {
@@ -84,6 +97,11 @@ h1,h2,h3,h4,h5,h6{
     flex: 1;
 }
 
+.cart-row-howmany {
+    flex: 1;
+    font-weight: bold;
+}
+
 .quantity {
     display: inline-block;
     font-weight: 700;
@@ -92,10 +110,6 @@ h1,h2,h3,h4,h5,h6{
 
 .product{
 	border-radius: 0 0 4px 4px;
-}
-
-.bg-dark{
-	background-color: #4f868c !important;
 }
 
 .row-image{
