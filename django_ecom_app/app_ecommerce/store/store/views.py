@@ -5,10 +5,12 @@ used in application.
 '''
 
 from django.shortcuts import render
+from .models import *
 
 # Store render
 def store(request):
-    context = {}
+    products = Product.objects.all()
+    context = {'products': products}
     return render(request, 'store/store.html', context)
 
 # Cart render
@@ -20,3 +22,4 @@ def cart(request):
 def checkout(request):
     context = {}
     return render(request, 'store/checkout.html', context)
+
