@@ -17,10 +17,20 @@ class Product(models.Model):
     price = models.FloatField()
     # 'digital' field tells us essentially if the product needs to be shipped 
     digital = models.BooleanField(default=False, null=True, blank=True)
-    # TODO: image field 
+    image = models.ImageField(null=True, blank=True)
     
     def __str__(self):
         return self.name
+    
+    # This property function is assuring us that if the Product doesn't have an image
+    # attached to it, the page will still load and not throw an error
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
     
 # Order Model
 class Order(models.Model):

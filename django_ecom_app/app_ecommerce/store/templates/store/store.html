@@ -12,13 +12,20 @@
     <div class="row">
         {% for product in products %}
         <div class="col-md-6">
-            <img class="item-thumbnail" src="{% static 'img/placeholder_item.png' %}">
+            <img class="item-thumbnail" src="{{ product.imageURL }}">
             <div class="box-element product">
-                <h6><strong>{{ product.name }}</strong></h6>
+                <h6>
+                    <strong>{{ product.name }}</strong>
+                    {% if product.digital == False %}
+                        (physical)
+                    {% else %}
+                        (digital)
+                    {% endif %}
+                </h6>
                 <hr>
                 <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
                 <a class="btn btn-outline-success" href="#">View Item</a>
-                <h4 class="item-price">{{ product.price|floatformat:2 }}</h4> zł</h4>
+                <h4 class="item-price">{{ product.price|floatformat:2 }} zł</h4>
             </div>
         </div>
         {% endfor %}
