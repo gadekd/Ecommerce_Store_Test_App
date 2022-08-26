@@ -39,11 +39,25 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     # If this field is set to False, we can keep adding items to the order but if this changes
     # to True, it means that this order is completed. Next items will be added to the new order
-    complete = models.BooleanField(default=False, null=True, blank=True)
+    complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
     
     def __str__(self):
         return str(self.id)
+    
+    # This property function is used to calculate price of all the items in the cart
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total
+    
+    # This property function is used to count all the items in the cart
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total
     
 # OrderItem Model
 # This model creates Item objects that need to be added to Cart with Many-To-One relationship
@@ -54,6 +68,12 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+    
+    # This property function is used to calculate the total price of specific item order
+    @property
+    def get_total(self):
+        total = self.product.price * self.quantity
+        return total
     
 # ShippingAddress Model
 class ShippingAddress(models.Model):

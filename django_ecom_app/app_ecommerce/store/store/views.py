@@ -15,11 +15,30 @@ def store(request):
 
 # Cart render
 def cart(request):
-    context = {}
+    if request.user.is_authenticated:
+        # First, let's assign logged user to the Customer value
+        customer = request.user.customer
+        # Second, let's check if the order we'are looking for is already created
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        # The next line gets all the Order Items child from the specific Order parent object
+        items = order.orderitem_set.all()
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        
+    context = {'items': items, 'order': order}
     return render(request, 'store/cart.html', context)
 
 # Checkout render
 def checkout(request):
-    context = {}
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+    else:
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        
+    context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
 
