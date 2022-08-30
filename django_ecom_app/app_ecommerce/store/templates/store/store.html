@@ -23,7 +23,8 @@
                     {% endif %}
                 </h6>
                 <hr>
-                <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
+                <button data-product={{ product.id }} data-action="add" 
+                class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
                 <a class="btn btn-outline-success" href="#">View Item</a>
                 <h4 class="item-price">{{ product.price|floatformat:2 }} zł</h4>
             </div>

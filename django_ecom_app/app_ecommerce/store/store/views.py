@@ -5,6 +5,7 @@ used in application.
 '''
 
 from django.shortcuts import render
+from django.http import JsonResponse
 from .models import *
 
 # Store render
@@ -41,4 +42,8 @@ def checkout(request):
         
     context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
+
+# Update item render
+def updateItem(request):
+    return JsonResponse('Item was added', safe=False)
 
