@@ -45,6 +45,18 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
     
+    # This property loops through all the items in the cart and checks if there is any item that requires shipping
+    # If there is a physical item in out cart, the checkout page will display a shipping form for user to fill
+    @property
+    def shipping(self):
+        shipping = False
+        orderitems = self.orderitem_set.all()
+        for i in orderitems:
+            if i.product.digital == False:
+                shipping = True
+        
+        return shipping
+    
     # This property function is used to calculate price of all the items in the cart
     @property
     def get_cart_total(self):

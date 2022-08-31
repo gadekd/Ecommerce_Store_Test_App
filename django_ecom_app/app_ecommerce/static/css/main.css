@@ -130,6 +130,14 @@ h1,h2,h3,h4,h5,h6{
 
 /* CART STYLES END */
 
+/* CHECKOUT STYLES START */
+#payment-info {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+/* CHECKOUT STYLES END */
+
 /* FOOTER STYLES START */
 .footer {
     margin-top: 25px;

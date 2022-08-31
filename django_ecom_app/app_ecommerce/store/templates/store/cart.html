@@ -49,8 +49,8 @@
                         <p class="quantity">{{ item.quantity }}</p>
 
                         <div class="quantity">
-                            <img class="change-quantity" src="{% static 'img/arr_up.png' %}">
-                            <img class="change-quantity" src="{% static 'img/arr_down.png' %}">
+                            <img data-product={{ item.product.id }} data-action="add" class="change-quantity update-cart" src="{% static 'img/arr_up.png' %}">
+                            <img data-product={{ item.product.id }} data-action="remove" class="change-quantity update-cart" src="{% static 'img/arr_down.png' %}">
                         </div>
                     </div>
                     <div class="cart-row-total">{{ item.get_total|floatformat:2 }} zł</div>
