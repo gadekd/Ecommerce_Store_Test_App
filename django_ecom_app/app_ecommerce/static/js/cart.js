@@ -12,11 +12,39 @@ for(let i = 0; i < updateBtns.length; i++) {
 
         console.log('USER:', user);
         if(user === 'AnonymousUser') {
-            console.log('Not logged in');
+            addCookieItem(productId, action);
         } else {
             updateUserOrder(productId, action);
         }
     })
+}
+
+// Function allowing not authenticated user to add or remove items to their cart 
+// and store the items in cookies
+function addCookieItem(productId, action) {
+    console.log('User is not logged in');
+
+    if(action == 'add') {
+        // If cart item is not added, add it and if it is, increase its value
+        if(cart[productId] == undefined) {
+            cart[productId] = {'quantity':1};
+        } else {
+            cart[productId]['quantity'] += 1; 
+        }
+    }
+
+    if(action == 'remove') {
+        cart[productId]['quantity'] -= 1;
+        if(cart[productId]['quantity'] <= 0) {
+            console.log('Item should be deleted');
+            delete cart[productId];
+        }
+    }
+
+    console.log('Cart:', cart);
+    document.cookie = 'cart=' + JSON.stringify(cart) + ";admin=;path=/";
+    // location.reload() is used to display the cart update next to the cart icon
+    location.reload();
 }
 
 function updateUserOrder(productId, action) {
