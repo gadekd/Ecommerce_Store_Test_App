@@ -40,9 +40,19 @@ def cart(request):
         # The reason why we are adding this here is to render the amount of items in every template
         cartItems = order.get_cart_items
     else:
+        try:
+            # The request.COOKIES part gets items from unauthenticated users' carts
+            cart = json.loads(request.COOKIES['cart'])
+        except:
+            cart = {}
+        print('Cart:', cart)
         items = []
         order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
         cartItems = order['get_cart_items']
+        
+        # This loop will get the items from the session and update cartItems
+        for i in cart:
+            cartItems += cart[i]['quantity']
         
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/cart.html', context)

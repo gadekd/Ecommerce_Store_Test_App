@@ -41,6 +41,39 @@
                 return cookieValue;
             }
             const csrftoken = getToken('csrftoken');
+
+            function getCookie(name) {
+                // Split cookie string and get all individual name=value pairs in an array
+                let cookieArr = document.cookie.split(';');
+
+                // Loop through the array elements
+                for(let i = 0; i < cookieArr.length; i++) {
+                    let cookiePair = cookieArr[i].split('=');
+
+                    // Removing whitespace at the beggining of the cookie name
+                    // and compare it with the given string
+                    if(name == cookiePair[0].trim()) {
+                        // Decode the cookie value and return
+                        return decodeURIComponent(cookiePair[1]);
+                    }
+                }
+
+                // Return null if not found
+                return null;
+            }
+
+            let cart = JSON.parse(getCookie('cart'));
+
+            // This prevents the cart value of receiving null value in the cart variable
+            if(cart == undefined) {
+                cart = {};
+                console.log('Cart was created.');
+                // Here we are assigning cookie to the domain so we can have the same cookie
+                // on every page we visit
+                document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
+            }
+
+            console.log('Cart:', cart);
         </script>
 
     </head>
