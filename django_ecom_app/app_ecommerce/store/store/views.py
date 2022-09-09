@@ -52,7 +52,36 @@ def cart(request):
         
         # This loop will get the items from the session and update cartItems
         for i in cart:
-            cartItems += cart[i]['quantity']
+            # But first let's use try/except method to prevent querying non existing items
+            try:
+                cartItems += cart[i]['quantity']
+                
+                # Now we can update the number of items in car and its total price in the cart view
+                product = Product.objects.get(id=i)
+                total = (product.price * cart[i]['quantity'])
+                
+                order['get_cart_total'] += total
+                order['get_cart_items'] += cart[i]['quantity']
+                
+                item = {
+                    'product':{
+                        'id':product.id,
+                        'name':product.name,
+                        'price':product.price,
+                        'imageURL':product.imageURL,
+                    },
+                    'quantity':cart[i]['quantity'],
+                    # 'digital':product.digital,
+                    'get_total':total,
+                }
+                
+                items.append(item)
+                
+                if(product.digital == False):
+                    order['shipping'] = True
+                    
+            except:
+                pass
         
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/cart.html', context)
