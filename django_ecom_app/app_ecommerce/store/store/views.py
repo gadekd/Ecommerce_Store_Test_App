@@ -7,22 +7,16 @@ used in application.
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import *
+from .utils import cartData, guestOrder
 
 import json
 import datetime
 
 # Store view
 def store(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        # This is used to display the amount of items near the cart icon
-        cartItems = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-        cartItems = order['get_cart_items']
+    data = cartData(request)
+    
+    cartItems = data['cartItems']
     
     products = Product.objects.all()
     context = {'products': products, 'cartItems': cartItems}
@@ -30,73 +24,22 @@ def store(request):
 
 # Cart view
 def cart(request):
-    if request.user.is_authenticated:
-        # First, let's assign logged user to the Customer value
-        customer = request.user.customer
-        # Second, let's check if the order we'are looking for is already created
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        # The next line gets all the Order Items child from the specific Order parent object
-        items = order.orderitem_set.all()
-        # The reason why we are adding this here is to render the amount of items in every template
-        cartItems = order.get_cart_items
-    else:
-        try:
-            # The request.COOKIES part gets items from unauthenticated users' carts
-            cart = json.loads(request.COOKIES['cart'])
-        except:
-            cart = {}
-        print('Cart:', cart)
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-        cartItems = order['get_cart_items']
-        
-        # This loop will get the items from the session and update cartItems
-        for i in cart:
-            # But first let's use try/except method to prevent querying non existing items
-            try:
-                cartItems += cart[i]['quantity']
-                
-                # Now we can update the number of items in car and its total price in the cart view
-                product = Product.objects.get(id=i)
-                total = (product.price * cart[i]['quantity'])
-                
-                order['get_cart_total'] += total
-                order['get_cart_items'] += cart[i]['quantity']
-                
-                item = {
-                    'product':{
-                        'id':product.id,
-                        'name':product.name,
-                        'price':product.price,
-                        'imageURL':product.imageURL,
-                    },
-                    'quantity':cart[i]['quantity'],
-                    # 'digital':product.digital,
-                    'get_total':total,
-                }
-                
-                items.append(item)
-                
-                if(product.digital == False):
-                    order['shipping'] = True
-                    
-            except:
-                pass
+    data = cartData(request)
+    
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
         
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/cart.html', context)
 
 # Checkout view
 def checkout(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
-    else:
-        items = []
-        order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-        cartItems = order['get_cart_items']
+    data = cartData(request)
+    
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
         
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/checkout.html', context)
@@ -139,26 +82,26 @@ def processOrder(request):
     if request.user.is_authenticated:
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        total = float(data['form']['total'])
-        order.transaction_id = transaction_id
-        
-        if total == order.get_cart_total:
-            order.complete = True
-        
-        order.save()
-        
-        if order.shipping == True:
-            ShippingAddress.objects.create(
-                customer = customer,
-                order = order,
-                street = data['shipping']['street'],
-                city = data['shipping']['city'],
-                voivodeship = data['shipping']['voivodeship'],
-                zipcode = data['shipping']['zipcode'],
-            )
         
     else:
-        print('User is not logged in.')
+        customer, order = guestOrder(request, data)
+            
+    total = float(data['form']['total'])
+    order.transaction_id = transaction_id
+        
+    if total == order.get_cart_total:
+        order.complete = True
+        
+    order.save()
+    
+    if order.shipping == True:
+        ShippingAddress.objects.create(
+            customer = customer,
+            order = order,
+            street = data['shipping']['street'],
+            city = data['shipping']['city'],
+            voivodeship = data['shipping']['voivodeship'],
+            zipcode = data['shipping']['zipcode'],
+        )
     
     return JsonResponse('Payment complete!', safe=False)
-
