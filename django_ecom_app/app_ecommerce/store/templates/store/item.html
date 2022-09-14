@@ -1,0 +1,51 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h3>Item page</h3>
+
+    <div class="box-element">
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><h4>Item name details</h4></td>
+                    <td><a class="btn btn-outline-dark back-to-shop" href="{% url 'store' %}"><i data-feather="arrow-left"></i> Back to Shop</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="item-image">
+            <img class="item-thumbnail" src="{% static 'img/square_blue.png' %}">
+        </div>
+
+        <div class="item-table">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Variant</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Blue Square</td>
+                        <td>Physical</td>
+                        <td>20.00 zł</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button data-action="add" 
+        class="btn btn-outline-secondary add-btn update-cart">
+        <i data-feather="shopping-cart"></i> Add to Cart</button>
+    </div>
+
+{% endblock %}

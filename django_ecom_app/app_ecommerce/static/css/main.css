@@ -22,7 +22,7 @@ h1,h2,h3,h4,h5,h6{
 
 .item-thumbnail{
 	width: 100%;
-	height: 200px;
+	/* height: 200px; */
 	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
     -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
     box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
@@ -73,6 +73,40 @@ h1,h2,h3,h4,h5,h6{
 	font-size: 14px;
     padding: 0 5px;
     vertical-align: top;
+}
+
+.item-table {
+    margin-top: 20px;
+}
+
+.back-to-shop {
+    float: right;
+}
+
+.update-cart-sm {
+    display: none;
+}
+
+.view-item-sm {
+    display: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .update-cart-bg {
+        display: none;
+    }
+
+    .update-cart-sm {
+        display: inline-block;
+    }
+
+    .view-item-bg {
+        display: none;
+    }
+
+    .view-item-sm {
+        display: inline-block;
+    }
 }
 
 /* CART STYLES START */
