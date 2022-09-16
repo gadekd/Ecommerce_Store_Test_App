@@ -20,8 +20,57 @@
             </tbody>
         </table>
 
-        <div class="item-image">
+        {% comment %} <div class="item-image">
             <img class="item-thumbnail" src="{% static 'img/square_blue.png' %}">
+        </div> {% endcomment %}
+
+        <div class="container gallery-container">
+            <!--Full resolution images-->
+            <div class="slides">
+                <div class="corner-number">1 / 4</div>
+                <img class="item-img" src="{% static 'img/placeholder_item.png' %}">
+            </div>
+
+            <div class="slides">
+                <div class="corner-number">2 / 4</div>
+                <img class="item-img" src="{% static 'img/placeholder_item.png' %}">
+            </div>
+
+            <div class="slides">
+                <div class="corner-number">3 / 4</div>
+                <img class="item-img" src="{% static 'img/placeholder_item.png' %}">
+            </div>
+
+            <div class="slides">
+                <div class="corner-number">4 / 4</div>
+                <img class="item-img" src="{% static 'img/placeholder_item.png' %}">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)"><i data-feather="arrow-left-circle"></i></a>
+            <a class="next" onclick="plusSlides(1)"><i data-feather="arrow-right-circle"></i></a>
+
+            <div class="caption-container">
+                <p class="image-caption">Image gallery</p>
+            </div>
+
+            <!--Miniatures-->
+            <div class="row">
+                <div class="gallery-column">
+                    <img class="demo cursor item-mini" src="{% static 'img/placeholder_item.png' %}" onclick="currentSlide(1)" alt="Front">
+                </div>
+
+                <div class="gallery-column">
+                    <img class="demo cursor item-mini" src="{% static 'img/placeholder_item.png' %}" onclick="currentSlide(2)" alt="Right angle">
+                </div>
+
+                <div class="gallery-column">
+                    <img class="demo cursor item-mini" src="{% static 'img/placeholder_item.png' %}" onclick="currentSlide(3)" alt="Left angle">
+                </div>
+
+                <div class="gallery-column">
+                    <img class="demo cursor item-mini" src="{% static 'img/placeholder_item.png' %}" onclick="currentSlide(4)" alt="Back">
+                </div>
+            </div>
         </div>
 
         <div class="item-table">
@@ -47,5 +96,9 @@
         class="btn btn-outline-secondary add-btn update-cart">
         <i data-feather="shopping-cart"></i> Add to Cart</button>
     </div>
+
+    {% block script %}
+        <script src="{% static "js/gallery_slideshow.js" type="text/javascript" %}"></script>
+    {% endblock script %}
 
 {% endblock %}

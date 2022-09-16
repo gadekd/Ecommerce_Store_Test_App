@@ -46,8 +46,13 @@ def checkout(request):
 
 # Item detail view
 def itemView(request, id):
+    data = cartData(request)
     
-    context = {}
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+        
+    context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'store/item.html', context)
 
 # Update item view

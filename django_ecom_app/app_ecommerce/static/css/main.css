@@ -109,6 +109,93 @@ h1,h2,h3,h4,h5,h6{
     }
 }
 
+/* ITEM GALLERY STYLES START */
+* {
+    box-sizing: border-box;
+  }
+
+.gallery-container {
+    position: relative;
+}
+
+.slides {
+    display: none;
+}
+
+.item-img {
+    width: 100%;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 35%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.next {
+    right: 11px;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.corner-number {
+    color: #F2F2F2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.caption-container {
+    text-align: center;
+    background-color: #222;
+    color: white;
+}
+
+.image-caption {
+    padding: 10px 16px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.gallery-column {
+    float: left;
+    width: 25%;
+}
+
+.item-mini {
+    width: 100%;
+}
+
+.demo {
+    opacity: 0.6;
+}
+
+.active, .demo:hover {
+    opacity: 1;
+}
+/* ITEM GALLERY STYLES END */
+
 /* CART STYLES START */
 .checkout-button {
     float: right;
