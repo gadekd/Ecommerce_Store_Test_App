@@ -27,8 +27,8 @@
                 class="btn btn-outline-secondary add-btn update-cart-bg">Add to Cart</button>
                 <button data-product={{ product.id }} data-action="add" 
                 class="btn btn-outline-secondary add-btn update-cart-sm"><i data-feather="shopping-cart"></i></button>
-                <a class="btn btn-outline-success view-item-bg" href="#">View Item</a>
-                <a class="btn btn-outline-success view-item-sm" href="#"><i data-feather="search"></i></a>
+                <a class="btn btn-outline-success view-item-bg" href="item/{{ product.id }}">View Item</a>
+                <a class="btn btn-outline-success view-item-sm" href="item/{{ product.id }}"><i data-feather="search"></i></a>
                 <h4 class="item-price">{{ product.price|floatformat:2 }} zł</h4>
             </div>
         </div>

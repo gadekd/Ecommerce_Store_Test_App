@@ -51,8 +51,14 @@ def itemView(request, id):
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
+    
+    # Get id of the specific item
+    products = Product.objects.all()
+    product = Product.objects.get(id=id)
+    product_id = product.id
+    print(product_id)
         
-    context = {'items': items, 'order': order, 'cartItems': cartItems}
+    context = {'items': items, 'order': order, 'cartItems': cartItems, 'product': product, 'product_id': product_id, 'products': products}
     return render(request, 'store/item.html', context)
 
 # Update item view

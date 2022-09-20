@@ -82,13 +82,21 @@
                         <th scope="col">Price</th>
                     </tr>
                 </thead>
+                {% for product in products %}
+                {% if product.id == product_id %}
                 <tbody>
                     <tr>
-                        <td>Blue Square</td>
-                        <td>Physical</td>
-                        <td>20.00 zł</td>
+                        <td>{{ product.name }}</td>
+                        <td>{% if product.digital == True %}
+                                Digital
+                            {% else %}
+                                Physical
+                            {% endif %}</td>
+                        <td>{{ product.price|floatformat:2 }} zł</td>
                     </tr>
                 </tbody>
+                {% endif %}
+                {% endfor %}
             </table>
         </div>
 
